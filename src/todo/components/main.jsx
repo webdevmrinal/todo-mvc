@@ -53,6 +53,7 @@ export function Main({ todos, dispatch, newestItemTimestamp }) {
 							dispatch={dispatch}
 							index={index}
 							isNew={todo.timestamp === newestItemTimestamp}
+							todos={todos}
 						/>
 					);
 				})}

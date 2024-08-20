@@ -11,23 +11,21 @@ export const Item = memo(function Item({
   index,
   isNew,
   todos,
-  isNewTodoFading,
 }) {
   const [isWritable, setIsWritable] = useState(false);
   const [isFading, setIsFading] = useState(isNew);
   const { title, completed, id, timestamp, completionTimestamp } = todo;
-
-  console.log("isNew: ", isNew, title);
 
   useEffect(() => {
     if (isNew) {
       setIsFading(true);
       const timer = setTimeout(() => {
         setIsFading(false);
-      }, 15000);
-      return () => clearTimeout(timer);
+      }, 10000);
     }
   }, [isNew]);
+
+  console.log("isFading", isFading, title);
 
   const toggleItem = useCallback(
     () => dispatch({ type: TOGGLE_ITEM, payload: { id } }),
@@ -59,8 +57,6 @@ export const Item = memo(function Item({
     },
     [id, removeItem, updateItem]
   );
-
-  console.log("isFading", isFading, title);
 
   const getCompletionColor = () => {
     if (completionTimestamp) {
@@ -111,8 +107,7 @@ export const Item = memo(function Item({
               data-testid="todo-item-label"
               onDoubleClick={handleDoubleClick}
               className={classnames({ "fading-item": isFading })}
-                style={{ color: getCompletionColor() }}
-            //   style={{ color: "#4169E1" }}
+              style={{ color: getCompletionColor() }}
             >
               {title}
             </label>

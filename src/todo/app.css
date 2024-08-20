@@ -24,7 +24,7 @@ but useful for people who use screen readers */
 }
 
 .fading-item {
-  /* animation: fadeColor 15s ease-in-out forwards; */
+  animation: fadeColor 10s ease-in-out forwards;
 }
 
 .timestamp-container {
